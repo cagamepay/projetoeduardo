@@ -1,0 +1,40 @@
+Calculatrix/
+│
+├── main.py                     # Arquivo principal para iniciar o jogo
+│
+├── assets/
+│   ├── images/
+│   │   └── logo.png            # Imagens e logotipos do jogo
+│   ├── sounds/
+│   │   └── click_sound.wav     # Sons de clique e música de fundo
+│   └── themes/
+│       └── theme_config.json   # Arquivo JSON para temas de cores e configurações de interface
+│
+├── src/
+│   ├── screens/
+│   │   ├── start_screen.py     # Tela inicial do jogo
+│   │   ├── difficulty_screen.py # Tela para seleção de nível de dificuldade
+│   │   ├── subject_screen.py    # Tela para selecionar a matéria (matemática, português, etc.)
+│   │   ├── game_screen.py       # Tela principal de perguntas e respostas do jogo
+│   │   └── summary_screen.py    # Tela final de resumo com pontuação
+│   │
+│   ├── subjects/
+│   │   ├── math.py              # Arquivo com lógica e perguntas de matemática
+│   │   ├── portuguese.py        # Arquivo com lógica e perguntas de português
+│   │   ├── science.py           # Arquivo com lógica e perguntas de ciências
+│   │   └── history.py           # Arquivo com lógica e perguntas de história
+│   │
+│   ├── utils/
+│   │   ├── theme_manager.py     # Gerencia cores e temas interativos
+│   │   ├── question_manager.py   # Gerencia perguntas de cada nível e matéria
+│   │   ├── score_manager.py      # Calcula e armazena a pontuação do jogador
+│   │   ├── feedback.py           # Gerencia feedbacks ao jogador
+│   │   ├── player.py             # Gerencia informações do jogador
+│   │   ├── question.py           # Estrutura e lógica para perguntas
+│   │   └── score.py              # Estrutura e lógica para pontuação
+│   │
+│   └── game/
+│       ├── game.py              # Lógica principal do jogo
+│       └── ui.py                # Interface do usuário e interações
+│
+└── README.md                   # Documentação do projeto
