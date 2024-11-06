@@ -25,6 +25,8 @@ class Player(pygame.sprite.Sprite):
 		self.hitbox = self.rect.copy().inflate((-126,-70))
 		self.collision_sprites = collision_sprites
 
+
+		# APAGAR
 		# timers 
 		self.timers = {
 			'tool use': Timer(350,self.use_tool),
@@ -222,6 +224,7 @@ class Player(pygame.sprite.Sprite):
 		self.get_status()
 		self.update_timers()
 		self.get_target_pos()
+		self.get_target_pos()
 
 		self.move(dt)
-		self.animate(dt)
+		#self.animate(dt) #responsavel por animar o boneco
