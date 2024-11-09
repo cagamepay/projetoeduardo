@@ -14,6 +14,9 @@ from menu import Menu
 class Level:
 	def __init__(self):
 
+		# Inicializar shop_active como False
+		self.shop_active = False
+
 		# get the display surface
 		self.display_surface = pygame.display.get_surface()
 
@@ -35,8 +38,15 @@ class Level:
 		self.sky = Sky()
 
 		# shop
-		self.menu = Menu(self.player, self.toggle_shop)
-		self.shop_active = False
+  
+  
+		questions = [
+    ("Qual é a capital da França?", ["Paris", "Londres", "Roma", "Madri"], 0),
+    ("o calebe é gay?", ["sim", "nao", "nem um pouco", "talvez"], 0),
+    ("o bernardo gosta de tomar de ladinho", ["sim", "nao", "as vezes", "nunca"], 2),
+]
+
+		self.menu = Menu(self.player, self.toggle_shop, questions=questions , correct_indices=[0, 3, 2]) 
 
 		# music
 		self.success = pygame.mixer.Sound('audio/success.wav')
@@ -107,6 +117,7 @@ class Level:
 			surf = pygame.image.load('graphics/world/ground.png').convert_alpha(),
 			groups = self.all_sprites,
 			z = LAYERS['ground'])
+  
 
 	def player_add(self,item):
 
@@ -115,6 +126,7 @@ class Level:
 
 	def toggle_shop(self):
 
+		# Alterna o estado de shop_active
 		self.shop_active = not self.shop_active
 
 	def reset(self):
@@ -154,8 +166,10 @@ class Level:
 		
 		# updates
 		if self.shop_active:
+			# Atualiza e mostra o menu se shop_active estiver ativo
 			self.menu.update()
 		else:
+			# Atualizações normais quando shop_active está inativo
 			self.all_sprites.update(dt)
 			self.plant_collision()
 
@@ -185,12 +199,3 @@ class CameraGroup(pygame.sprite.Group):
 					offset_rect = sprite.rect.copy()
 					offset_rect.center -= self.offset
 					self.display_surface.blit(sprite.image, offset_rect)
-
-					# # anaytics
-					# if sprite == player:
-					# 	pygame.draw.rect(self.display_surface,'red',offset_rect,5)
-					# 	hitbox_rect = player.hitbox.copy()
-					# 	hitbox_rect.center = offset_rect.center
-					# 	pygame.draw.rect(self.display_surface,'green',hitbox_rect,5)
-					# 	target_pos = offset_rect.center + PLAYER_TOOL_OFFSET[player.status.split('_')[0]]
-					# 	pygame.draw.circle(self.display_surface,'blue',target_pos,5)

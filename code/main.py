@@ -2,7 +2,7 @@ import pygame
 import sys
 from settings import *
 from level import Level
-from tela_inicial.tela_inicial import TelaInicial  # Corrige o import
+from tela_inicial.tela_inicial import *  # Corrige o import
 
 class Game:
     def __init__(self):

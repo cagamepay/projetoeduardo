@@ -158,6 +158,8 @@ class Player(pygame.sprite.Sprite):
 				self.seed_index = self.seed_index if self.seed_index < len(self.seeds) else 0
 				self.selected_seed = self.seeds[self.seed_index]
 
+
+
 			if keys[pygame.K_RETURN]:
 				collided_interaction_sprite = pygame.sprite.spritecollide(self,self.interaction,False)
 				if collided_interaction_sprite:
@@ -165,7 +167,16 @@ class Player(pygame.sprite.Sprite):
 						self.toggle_shop()
 					else:
 						self.status = 'left_idle'
-						self.sleep = True
+						self.sleep = True 
+
+			if keys[pygame.K_RETURN]:
+				collided_interaction_sprite = pygame.sprite.spritecollide(self,self.interaction,False)
+				if collided_interaction_sprite:
+					if collided_interaction_sprite[0].name == 'test':
+						self.toggle_shop()
+					else:
+						self.status = 'left_idle'
+						self.sleep = True						
 
 	def get_status(self):
 		
@@ -227,4 +238,4 @@ class Player(pygame.sprite.Sprite):
 		self.get_target_pos()
 
 		self.move(dt)
-		#self.animate(dt) #responsavel por animar o boneco
+		self.animate(dt) #responsavel por animar o boneco
