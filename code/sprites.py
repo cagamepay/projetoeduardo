@@ -73,10 +73,10 @@ class Tree(Generic):
 		self.stump_surf = pygame.image.load(stump_path).convert_alpha()
 
 		# apples
-		self.apple_surf = pygame.image.load('graphics/fruit/apple.png')
-		self.apple_pos = APPLE_POS[name]
-		self.apple_sprites = pygame.sprite.Group()
-		self.create_fruit()
+	#	self.apple_surf = pygame.image.load('graphics/fruit/apple.png')
+	#	self.apple_pos = APPLE_POS[name]
+#		self.apple_sprites = pygame.sprite.Group()
+#		self.create_fruit()
 
 		self.player_add = player_add
 
