@@ -2,37 +2,44 @@ import pygame
 from settings import *
 from timer import Timer
 
-class Menu1:
+class Menu2:
     def __init__(self, player, toggle_menu, questions=None, correct_indices=None):
         self.player = player
         self.toggle_menu = toggle_menu
         self.display_surface = pygame.display.get_surface()
         self.font = pygame.font.Font('font/LycheeSoda.ttf', 50)
 
-        # Propriedades de exibição
+        # Configurações de exibição do menu
         self.width = 600
         self.space = 10
         self.padding = 8
 
-        # Configurações de quiz
-        self.questions =  [
-      
-    ("Qual é a capital da França?", ["Paris", "Londres", "Roma", "Madri"], 0),
-    ("o calebe é gay?", ["sim", "nao", "nem um pouco", "talvez"], 0),
-    ("o bernardo gosta de tomar de ladinho", ["sim", "nao", "as vezes", "nunca"], 2),
-]
-
+        # Perguntas e opções do quiz
+        self.questions = questions or [
+            ("Qual é o planeta mais próximo do Sol?", ["Vênus", "Terra", "Marte", "Mercúrio"], 3),
+            ("Quem pintou a Mona Lisa?", ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"], 1),
+            ("Quantos segundos há em um minuto?", ["30", "60", "90", "120"], 1),
+            ("Qual é o maior mamífero do mundo?", ["Elefante", "Baleia Azul", "Girafa", "Tigre"], 1),
+            ("Quem escreveu 'Dom Quixote'?", ["Miguel de Cervantes", "Shakespeare", "Tolstoy", "Hemingway"], 0),
+            ("Qual é a fórmula química da água?", ["H2O", "CO2", "O2", "NaCl"], 0),
+            ("Qual é o maior oceano do mundo?", ["Oceano Atlântico", "Oceano Índico", "Oceano Pacífico", "Oceano Ártico"], 2),
+            ("Quem descobriu a gravidade?", ["Newton", "Einstein", "Galileu", "Tesla"], 0),
+            ("Qual é a língua mais falada no mundo?", ["Espanhol", "Chinês", "Inglês", "Árabe"], 1),
+            ("Qual é o animal mais rápido do mundo?", ["Guepardo", "Falcão Peregrino", "Leão", "Tigre"], 1)
+        ]
         self.correct_indices = correct_indices or []
         self.current_index = 0
 
+        # Temporizador para controlar a entrada de usuário
         self.timer = Timer(200)
         self.setup_current_question()
 
     def setup_current_question(self):
+        """Configura a pergunta e as opções atuais"""
         if self.current_index < len(self.questions):
             self.question, self.options, self.correct_index = self.questions[self.current_index]
-            self.index = 0
-            
+            self.index = 0  # Índice da opção selecionada
+
             # Superfície de texto para a pergunta
             self.question_surf = self.font.render(self.question, False, 'Black')
             self.question_rect = self.question_surf.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 4))
@@ -45,11 +52,12 @@ class Menu1:
             self.toggle_menu()  # Sai do menu após todas as perguntas
 
     def input(self):
+        """Processa entradas do usuário para navegação no menu"""
         keys = pygame.key.get_pressed()
         self.timer.update()
 
         if keys[pygame.K_ESCAPE]:
-            self.toggle_menu()
+            self.toggle_menu()  # Sai do menu
 
         if not self.timer.active:
             if keys[pygame.K_UP]:
@@ -66,20 +74,17 @@ class Menu1:
                 # Verifica se a resposta está correta
                 if self.index == self.correct_index:
                     print("Correto!")
-                    self.current_index += 1
-                    self.setup_current_question()  # Configura a próxima pergunta
                 else:
                     print("Incorreto!")
-                
-                # Sai do menu após responder
-                # self.toggle_menu()  # Você pode comentar isso se quiser continuar no quiz sem sair
+
+                # Avança para a próxima pergunta
+                self.current_index += 1
+                self.setup_current_question()
 
     def show_entry(self, text_surf, top, selected):
-        # Fundo da opção
+        """Desenha cada opção do menu com destaque para a selecionada"""
         bg_rect = pygame.Rect(SCREEN_WIDTH / 2 - self.width / 2, top, self.width, text_surf.get_height() + (self.padding * 2))
         pygame.draw.rect(self.display_surface, 'White', bg_rect, 0, 4)
-
-        # Texto da opção
         text_rect = text_surf.get_rect(center=bg_rect.center)
         self.display_surface.blit(text_surf, text_rect)
 
@@ -88,6 +93,7 @@ class Menu1:
             pygame.draw.rect(self.display_surface, 'Black', bg_rect, 4, 4)
 
     def update(self):
+        """Atualiza o menu, lidando com entrada e exibição"""
         self.input()
         
         # Exibe a pergunta

@@ -309,24 +309,3 @@ class TelaConfiguracoes:
                         self.volume = max(0, min(100, int((event.pos[0] - volume_slider.x) / volume_slider.width * 100)))
 
             pygame.display.flip()
-
-def main():
-    pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Tela Inicial")
-
-    tela_inicial = TelaInicial(screen)
-    tela_configuracoes = TelaConfiguracoes(screen, tela_inicial.background)
-
-    while True:
-        action = tela_inicial.run()
-        if action == "iniciar_jogo":
-            print("Jogo iniciado!")
-            break
-        elif action == "configuracoes":
-            tela_configuracoes.language = tela_inicial.language
-            tela_configuracoes.run()
-            tela_inicial.language = tela_configuracoes.language
-
-if __name__ == "__main__":
-    main()
