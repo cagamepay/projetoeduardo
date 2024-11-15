@@ -12,7 +12,7 @@ class Transition:
 		# overlay image
 		self.image = pygame.Surface((SCREEN_WIDTH,SCREEN_HEIGHT))
 		self.color = 255
-		self.speed = -2
+		self.speed = 0
 
 	def play(self):
 		self.color += self.speed

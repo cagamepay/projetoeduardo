@@ -15,18 +15,21 @@ class Menu2:
         self.padding = 8
 
         # Perguntas e opções do quiz
-        self.questions = questions or [
-            ("Qual é o planeta mais próximo do Sol?", ["Vênus", "Terra", "Marte", "Mercúrio"], 3),
-            ("Quem pintou a Mona Lisa?", ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"], 1),
-            ("Quantos segundos há em um minuto?", ["30", "60", "90", "120"], 1),
-            ("Qual é o maior mamífero do mundo?", ["Elefante", "Baleia Azul", "Girafa", "Tigre"], 1),
-            ("Quem escreveu 'Dom Quixote'?", ["Miguel de Cervantes", "Shakespeare", "Tolstoy", "Hemingway"], 0),
-            ("Qual é a fórmula química da água?", ["H2O", "CO2", "O2", "NaCl"], 0),
-            ("Qual é o maior oceano do mundo?", ["Oceano Atlântico", "Oceano Índico", "Oceano Pacífico", "Oceano Ártico"], 2),
-            ("Quem descobriu a gravidade?", ["Newton", "Einstein", "Galileu", "Tesla"], 0),
-            ("Qual é a língua mais falada no mundo?", ["Espanhol", "Chinês", "Inglês", "Árabe"], 1),
-            ("Qual é o animal mais rápido do mundo?", ["Guepardo", "Falcão Peregrino", "Leão", "Tigre"], 1)
-        ]
+        self.questions = [
+    ("O Calebe já se apaixonou por alguém na balada?", ["Sim", "Não", "Talvez", "Só pelas bebidas"], 0),
+    ("Qual a opinião do Calebe sobre 'ficar'?", ["Ótimo", "Não sou fã", "Depende da pessoa", "Prefiro um namoro sério"], 0),
+    ("O Calebe já deu um 'olá' para um desconhecido(a) de forma ousada?", ["Sim", "Não", "Eu acho que sim", "Só quando está bêbado"], 0),
+    ("O que o Calebe faria em uma noite romântica?", ["Jantar à luz de velas", "Ir ao cinema", "Ver Netflix e pedir pizza", "Apostaria num rolezinho picante"], 3),
+    ("O Calebe já se arrependeu de um beijo?", ["Sim", "Não", "Só quando era jovem", "Nunca, todos são inesquecíveis"], 2),
+    ("Qual o segredo mais picante do Calebe?", ["Ele nunca conta", "Já teve um crush proibido", "Aquela história com a amiga", "Ele se acha um romântico"], 1),
+    ("Se o Calebe fosse uma sobremesa, qual seria?", ["Sorvete quente", "Chocolate derretido", "Torta de morango", "Mousse de maracujá picante"], 3),
+    ("O Calebe já fez algo espontâneo e atrevido?", ["Sim", "Não", "Quem sabe?", "Só quando está com coragem"], 0),
+    ("Qual tipo de flerte o Calebe mais usa?", ["O olhar", "O humor", "A gentileza", "O 'deixa comigo'"], 3),
+    ("O Calebe já recebeu uma cantada inusitada?", ["Sim", "Não", "Só de amigos", "Ele é quem dá as cantadas"], 0),
+    ("Se o Calebe tivesse que escolher entre amor e diversão, o que escolheria?", ["Amor", "Diversão", "Os dois, ao mesmo tempo", "Não escolhe, curte os dois"], 2),
+]
+
+
         self.correct_indices = correct_indices or []
         self.current_index = 0
 

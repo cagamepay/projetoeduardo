@@ -15,12 +15,20 @@ class Menu1:
         self.padding = 8
 
         # Configurações de quiz
-        self.questions =  [
-      
-    ("Qual é a capital da França?", ["Paris", "Londres", "Roma", "Madri"], 0),
-    ("o calebe é gay?", ["sim", "nao", "nem um pouco", "talvez"], 0),
-    ("o bernardo gosta de tomar de ladinho", ["sim", "nao", "as vezes", "nunca"], 2),
+        
+        self.questions = [
+    ("Qual é a capital da França?", ["Mbappe", "Londres", "Roma", "Madri"], 0),
+    ("O Calebe é gay?", ["sim", "não", "nem um pouco", "talvez"], 0),
+    ("O Bernardo gosta de tomar de ladinho?", ["sim", "não", "às vezes", "nunca"], 3),
+    ("Qual é a sobremesa favorita do Calebe?", ["Pudim", "Sorvete", "Brigadeiro", "Nenhuma, ele prefere salgado"], 3),
+    ("O que o Calebe nunca recusa?", ["pinto", "Um debate político", "Um rolê aleatório", "Uma partida de videogame"], 0),
+    ("Onde o Calebe passa mais tempo?", ["Academia", "putero", "Faculdade", "Na balada"], 1),
+    ("Qual é o esporte favorito do Calebe?", ["Futebol", "Xadrez", "Natação", "Ele não gosta muito de esportes"], 3),
+    ("O que o Calebe faz aos domingos?", ["Dormir o dia todo", "Estudar", "Ver série", "Sair com amigos"], 0),
+    ("Qual é o prato preferido do Calebe?", ["droga", "Hambúrguer", "Sushi", "Churrasco"], 1),
+    ("Quem é o maior rival do Calebe?", ["Bernardo", "O sono", "Trabalhos da faculdade", "A preguiça"], 2),
 ]
+
 
         self.correct_indices = correct_indices or []
         self.current_index = 0
@@ -72,7 +80,7 @@ class Menu1:
                     print("Incorreto!")
                 
                 # Sai do menu após responder
-                # self.toggle_menu()  # Você pode comentar isso se quiser continuar no quiz sem sair
+                self.toggle_menu()  # Você pode comentar isso se quiser continuar no quiz sem sair
 
     def show_entry(self, text_surf, top, selected):
         # Fundo da opção
