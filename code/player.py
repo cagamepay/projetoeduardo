@@ -4,7 +4,7 @@ from support import *
 from timer import Timer
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, toggle_shop2):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, toggle_shop2, toggle_shop3, toggle_shop4, toggle_shop5, toggle_shop6, toggle_shop7):
         super().__init__(group)
 
         self.import_assets()
@@ -48,6 +48,11 @@ class Player(pygame.sprite.Sprite):
         self.soil_layer = soil_layer
         self.toggle_shop = toggle_shop
         self.toggle_shop2 = toggle_shop2
+        self.toggle_shop3 = toggle_shop3
+        self.toggle_shop4 = toggle_shop4
+        self.toggle_shop5 = toggle_shop5
+        self.toggle_shop6 = toggle_shop6
+        self.toggle_shop7 = toggle_shop7
 
         # Sound
         self.watering = pygame.mixer.Sound('audio/water.mp3')
@@ -101,8 +106,18 @@ class Player(pygame.sprite.Sprite):
                     npc_name = collided_interaction_sprite[0].name
                     if npc_name == 'Trader':
                         self.toggle_shop()
-                    elif npc_name == 'gays':
+                    elif npc_name == 'Vilon':
                         self.toggle_shop2()
+                    elif npc_name == 'Vilon':
+                        self.toggle_shop3()
+                    elif npc_name == 'Vilon':
+                        self.toggle_shop4()
+                    elif npc_name == 'Vilon':
+                        self.toggle_shop5()
+                    elif npc_name == 'Vilon':
+                        self.toggle_shop6()
+                    elif npc_name == 'Vilon':
+                        self.toggle_shop7()
                     else:
                         self.status = 'left_idle'
                         self.sleep = True

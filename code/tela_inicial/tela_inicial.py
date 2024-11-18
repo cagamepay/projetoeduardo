@@ -1,7 +1,9 @@
 import pygame
 import sys
+import os
 
-# Configurações de tela e cores
+BASE_PATH = os.path.join("code", "tela_inicial")
+
 SCREEN_WIDTH, SCREEN_HEIGHT = 800, 800
 WHITE = (255, 255, 255)
 LIGHT_GRAY = (200, 200, 200)
@@ -13,13 +15,6 @@ MODAL_BORDER = (255, 215, 0)
 MODAL_SHADOW = (20, 20, 20)
 RESOLUCOES = [(800, 800), (1024, 768), (1280, 720), (1920, 1080)]
 
-
-Caminhos = {
-    "title_font": r"C:\\Users\\c0mbe\\OneDrive\\Área de Trabalho\stardw\\PyDew-Valley\\code\\tela_inicial\\drake.otf",
-    "button_image": r"C:\\Users\\c0mbe\\OneDrive\\Área de Trabalho\stardw\\PyDew-Valley\\code\\tela_inicial\\button.png",
-    "background_image": r"C:\\Users\\c0mbe\\OneDrive\\Área de Trabalho\stardw\\PyDew-Valley\\code\\tela_inicial\\background.png"
-}
-
 class TelaInicial:
     def __init__(self, screen):
         self.screen = screen
@@ -27,25 +22,29 @@ class TelaInicial:
         self.language = "English"
         self.update_dimensions()
 
+        self.resolucao_atual = 0
+        self.language = "English"
+        self.update_dimensions()
+
         try:
-            self.title_font = pygame.font.Font(Caminhos["title_font"], 72)
-            self.start_button_font = pygame.font.Font(Caminhos["title_font"], 48)
-            self.settings_button_font = pygame.font.Font(Caminhos["title_font"], 40)
-            self.help_button_font = pygame.font.Font(Caminhos["title_font"], 36)
-            self.credits_button_font = pygame.font.Font(Caminhos["title_font"], 32)
+            self.title_font = pygame.font.Font(os.path.join(BASE_PATH, "drake.otf"), 72)
+            self.start_button_font = pygame.font.Font(os.path.join(BASE_PATH, "drake.otf"), 48)
+            self.settings_button_font = pygame.font.Font(os.path.join(BASE_PATH, "drake.otf"), 40)
+            self.help_button_font = pygame.font.Font(os.path.join(BASE_PATH, "drake.otf"), 36)
+            self.credits_button_font = pygame.font.Font(os.path.join(BASE_PATH, "drake.otf"), 32)
         except FileNotFoundError:
             print("Fonte 'drake.otf' não encontrada.")
             pygame.quit()
             sys.exit()
 
-        self.button_image = pygame.image.load(Caminhos["button_image"])
+        self.button_image = pygame.image.load(os.path.join(BASE_PATH, "button.png"))
         self.update_button_image()
         self.title_y = 100  # Posição do título
 
     def update_dimensions(self):
         self.SCREEN_WIDTH, self.SCREEN_HEIGHT = RESOLUCOES[self.resolucao_atual]
         self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
-        self.background = pygame.image.load(Caminhos["background_image"])
+        self.background = pygame.image.load(os.path.join(BASE_PATH, "background.png"))
         self.background = pygame.transform.scale(self.background, (self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
 
     def update_button_image(self):
@@ -66,7 +65,6 @@ class TelaInicial:
         return button_rect
 
     def draw_back_button(self):
-        # Definir estilo do botão de voltar
         button_width, button_height = 100, 50
         button_color = DARK_GRAY
         text_color = WHITE
@@ -89,36 +87,30 @@ class TelaInicial:
         return back_button_rect
 
     def draw_credits_modal(self):
-        # Definir dimensões e estilo do modal
         modal_width, modal_height = 600, 400
         modal_x = (self.SCREEN_WIDTH - modal_width) // 2
         modal_y = (self.SCREEN_HEIGHT - modal_height) // 2
         modal_rect = pygame.Rect(modal_x, modal_y, modal_width, modal_height)
 
-        # Desenhar sombra do modal
         shadow_offset = 10
         shadow_rect = pygame.Rect(modal_x + shadow_offset, modal_y + shadow_offset, modal_width, modal_height)
         pygame.draw.rect(self.screen, MODAL_SHADOW, shadow_rect, border_radius=20)
 
-        # Desenhar fundo do modal
         pygame.draw.rect(self.screen, MODAL_BACKGROUND, modal_rect, border_radius=20)
         pygame.draw.rect(self.screen, MODAL_BORDER, modal_rect, 5, border_radius=20)
 
-        # Carregar título do modal
-        title_font = pygame.font.Font(Caminhos["title_font"], 50)
+        title_font = pygame.font.Font(os.path.join(BASE_PATH, "drake.otf"), 36)
         title_text = title_font.render("Creditos", True, YELLOW)
         title_rect = title_text.get_rect(center=(modal_x + modal_width // 2, modal_y + 50))
         self.screen.blit(title_text, title_rect)
 
-        # Carregar nomes dos créditos
-        credit_font = pygame.font.Font(Caminhos["title_font"], 36)
+        credit_font = pygame.font.Font(os.path.join(BASE_PATH, "drake.otf"), 36)
         credit_names = ["Thiago", "Thiago", "Thiago", "Thiago"]
         for i, name in enumerate(credit_names):
             name_text = credit_font.render(name, True, WHITE)
             name_rect = name_text.get_rect(center=(modal_x + modal_width // 2, modal_y + 120 + i * 60))
             self.screen.blit(name_text, name_rect)
 
-        # Adicionar uma linha decorativa horizontal para melhor estética
         line_y = modal_y + 90
         pygame.draw.line(self.screen, MODAL_BORDER, (modal_x + 20, line_y), (modal_x + modal_width - 20, line_y), 3)
 
@@ -172,16 +164,15 @@ class TelaConfiguracoes:
         self.screen = screen
         self.background = background
         self.resolucao_atual = 0
-        self.volume = 25  # Volume inicial
+        self.volume = 25 
         self.musica = True
         self.saida_audio = "Auto"
         self.dynamic_range = "Medium"
         self.language = "English"
         self.subtitles = True
         
-        # Carregar fonte
         try:
-            self.font = pygame.font.Font(Caminhos["title_font"], 36)
+            self.font = pygame.font.Font(os.path.join(BASE_PATH, "drake.otf"), 36)
         except FileNotFoundError:
             print("Fonte 'drake.otf' não encontrada.")
             pygame.quit()
@@ -214,7 +205,6 @@ class TelaConfiguracoes:
         return toggle_rect
 
     def draw_back_button(self):
-        # Definir estilo do botão de voltar
         button_width, button_height = 120, 50
         button_color = DARK_GRAY
         text_color = WHITE
@@ -261,7 +251,7 @@ class TelaConfiguracoes:
             # Volume
             volume_label = "Volume Principal" if self.language == "Portuguese" else "Master Volume"
             volume_slider = self.draw_slider(volume_label, self.volume, (100, 100))
-            # Música
+            
             musica_label = "Música" if self.language == "Portuguese" else "Music"
             musica_button = self.draw_toggle(musica_label, self.musica, (100, 180))
             # Saída de áudio
@@ -309,3 +299,21 @@ class TelaConfiguracoes:
                         self.volume = max(0, min(100, int((event.pos[0] - volume_slider.x) / volume_slider.width * 100)))
 
             pygame.display.flip()
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("Tela Inicial")
+
+    tela_inicial = TelaInicial(screen)
+    tela_configuracoes = TelaConfiguracoes(screen, tela_inicial.background)
+
+    while True:
+        action = tela_inicial.run()
+        if action == "iniciar_jogo":
+            print("Jogo iniciado!")
+            break
+        elif action == "configuracoes":
+            tela_configuracoes.language = tela_inicial.language
+            tela_configuracoes.run()
+            tela_inicial.language = tela_configuracoes.language

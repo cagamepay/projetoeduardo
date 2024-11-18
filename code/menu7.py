@@ -2,7 +2,8 @@ import pygame
 from settings import *
 from timer import Timer
 
-class Menu1:
+class Menu7:
+    #Questões basicas de matemática
     def __init__(self, player, toggle_menu, questions=None, correct_indices=None):
         self.player = player
         self.toggle_menu = toggle_menu
@@ -17,17 +18,13 @@ class Menu1:
         # Configurações de quiz
         
         self.questions = [
-    ("Qual é a capital da França?", ["Mbappe", "Londres", "Roma", "Madri"], 0),
-    ("O Calebe é gay?", ["sim", "não", "nem um pouco", "talvez"], 0),
-    ("O Bernardo gosta de tomar de ladinho?", ["sim", "não", "às vezes", "nunca"], 3),
-    ("Qual é a sobremesa favorita do Calebe?", ["Pudim", "Sorvete", "Brigadeiro", "Nenhuma, ele prefere salgado"], 3),
-    ("O que o Calebe nunca recusa?", ["pinto", "Um debate político", "Um rolê aleatório", "Uma partida de videogame"], 0),
-    ("Onde o Calebe passa mais tempo?", ["Academia", "putero", "Faculdade", "Na balada"], 1),
-    ("Qual é o esporte favorito do Calebe?", ["Futebol", "Xadrez", "Natação", "Ele não gosta muito de esportes"], 3),
-    ("O que o Calebe faz aos domingos?", ["Dormir o dia todo", "Estudar", "Ver série", "Sair com amigos"], 0),
-    ("Qual é o prato preferido do Calebe?", ["droga", "Hambúrguer", "Sushi", "Churrasco"], 1),
-    ("Quem é o maior rival do Calebe?", ["Bernardo", "O sono", "Trabalhos da faculdade", "A preguiça"], 2),
-]
+            ("Qual número que completa o cálculo? ___ + 8 = 15", ["6", "7", "8", "9"], 1),
+            ("Qual número que completa o cálculo? 45 - ___ = 30", ["14", "15", "16", "17"], 1),
+            ("Qual número que completa o cálculo? 6 x ___ = 54", ["8", "9", "10", "11"], 1),
+            ("Qual número que completa o cálculo? 18 ÷ ___ = 6", ["3", "4", "5", "6"], 0),
+            ("Qual número que completa o cálculo? ___ - 7 = 10", ["16", "17", "18", "19"], 1),
+            ("Qual número que completa o cálculo? ___ + 15 = 27", ["11", "12", "13", "14"], 1),
+        ]
 
 
         self.correct_indices = correct_indices or []
@@ -105,4 +102,3 @@ class Menu1:
         for i, text_surf in enumerate(self.text_surfs):
             top = self.menu_top + i * (text_surf.get_height() + (self.padding * 2) + self.space)
             self.show_entry(text_surf, top, self.index == i)
-

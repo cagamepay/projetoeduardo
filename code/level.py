@@ -11,6 +11,11 @@ from sky import Rain, Sky
 from random import randint
 from menu import Menu1
 from menu2 import Menu2
+from menu3 import Menu3
+from menu4 import Menu4
+from menu5 import Menu5
+from menu6 import Menu6
+from menu7 import Menu7
 
 class Level:
 	def __init__(self):
@@ -18,6 +23,11 @@ class Level:
 		# Inicializar shop_active e shop2_active como False
 		self.shop_active = False
 		self.shop2_active = False
+		self.shop3_active = False
+		self.shop4_active = False
+		self.shop5_active = False
+		self.shop6_active = False
+		self.shop7_active = False
 
 		# get the display surface
 		self.display_surface = pygame.display.get_surface()
@@ -41,7 +51,12 @@ class Level:
 
 		# Menus
 		self.menu = Menu1(self.player, self.toggle_shop, correct_indices=[0, 3, 2]) 
-		self.menu2 = Menu2(self.player, self.toggle_shop2, correct_indices=[0, 3, 2]) 
+		self.menu2 = Menu2(self.player, self.toggle_shop2, correct_indices=[0, 3, 2])
+		self.menu3 = Menu3(self.player, self.toggle_shop3, correct_indices=[3, 2, 0, 0, 1])
+		self.menu4 = Menu4(self.player, self.toggle_shop4, correct_indices=[1, 2, 1, 0, 0])
+		self.menu5 = Menu5(self.player, self.toggle_shop5, correct_indices=[1, 0, 1, 1, 0, 2])
+		self.menu6 = Menu6(self.player, self.toggle_shop6, correct_indices=[2, 2, 1, 1, 1, 1])
+		self.menu7 = Menu7(self.player, self.toggle_shop7, correct_indices=[1, 1, 1, 0, 1, 1])
 
 		# music
 		self.success = pygame.mixer.Sound('audio/success.wav')
@@ -99,7 +114,12 @@ class Level:
 					interaction=self.interaction_sprites,
 					soil_layer=self.soil_layer,
 					toggle_shop=self.toggle_shop,
-					toggle_shop2=self.toggle_shop2
+					toggle_shop2=self.toggle_shop2,
+					toggle_shop3=self.toggle_shop3,
+					toggle_shop4=self.toggle_shop4,
+					toggle_shop5=self.toggle_shop5,
+					toggle_shop6=self.toggle_shop6,
+					toggle_shop7=self.toggle_shop7
 				)
 			
 			if obj.name == 'Bed':
@@ -128,6 +148,26 @@ class Level:
 	def toggle_shop2(self):
 		# Alterna o estado de shop2_active
 		self.shop2_active = not self.shop2_active
+	
+	def toggle_shop3(self):
+		# Alterna o estado de shop3_active
+		self.shop3_active = not self.shop3_active
+
+	def toggle_shop4(self):
+		# Alterna o estado de shop4_active
+		self.shop4_active = not self.shop4_active
+
+	def toggle_shop5(self):
+		# Alterna o estado de shop5_active
+		self.shop5_active = not self.shop5_active
+
+	def toggle_shop6(self):
+		# Alterna o estado de shop2_active
+		self.shop6_active = not self.shop6_active
+
+	def toggle_shop7(self):
+		# Alterna o estado de shop7_active
+		self.shop7_active = not self.shop7_active
 
 	def reset(self):
 		# Atualização de plantas e solo para novo ciclo
@@ -154,10 +194,20 @@ class Level:
 		self.all_sprites.custom_draw(self.player)
 
 		# updates
-		if self.shop_active:
+		if self.menu_active:
 			self.menu.update()  # Mostra o menu1
-		elif self.shop2_active:
+		elif self.menu2_active:
 			self.menu2.update()  # Mostra o menu2
+		elif self.menu3_active:
+			self.menu3.update()  # Mostra o menu3
+		elif self.menu4_active:
+			self.menu4.update()  # Mostra o menu4
+		elif self.menu5_active:
+			self.menu5.update()  # Mostra o menu5
+		elif self.menu6_active:
+			self.menu6.update()  # Mostra o menu6
+		elif self.menu7_active:
+			self.menu7.update()  # Mostra o menu7
 		else:
 			# Atualizações normais quando nenhum menu está ativo
 			self.all_sprites.update(dt)
@@ -165,7 +215,7 @@ class Level:
 
 		# weather
 		self.overlay.display()
-		if self.raining and not (self.shop_active or self.shop2_active):
+		if self.raining and not (self.shop_active or self.shop2_active or self.shop3_active or self.shop4_active or self.shop5_active or self.shop6_active or self.shop7_active):
 			self.rain.update()
 		self.sky.display(dt)
 
