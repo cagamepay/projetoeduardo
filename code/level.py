@@ -194,19 +194,19 @@ class Level:
 		self.all_sprites.custom_draw(self.player)
 
 		# updates
-		if self.menu_active:
+		if self.shop_active:
 			self.menu.update()  # Mostra o menu1
-		elif self.menu2_active:
+		elif self.shop2_active:
 			self.menu2.update()  # Mostra o menu2
-		elif self.menu3_active:
+		elif self.shop3_active:
 			self.menu3.update()  # Mostra o menu3
-		elif self.menu4_active:
+		elif self.shop4_active:
 			self.menu4.update()  # Mostra o menu4
-		elif self.menu5_active:
+		elif self.shop5_active:
 			self.menu5.update()  # Mostra o menu5
-		elif self.menu6_active:
+		elif self.shop6_active:
 			self.menu6.update()  # Mostra o menu6
-		elif self.menu7_active:
+		elif self.shop7_active:
 			self.menu7.update()  # Mostra o menu7
 		else:
 			# Atualizações normais quando nenhum menu está ativo
